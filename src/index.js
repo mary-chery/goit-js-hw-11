@@ -27,10 +27,9 @@ function onSearch(event) {
     }
     
 
-    picturesApiService.resetPage();
-    picturesApiService.fetchPictures().then(galleryResult).catch(() => 
-    Notiflix.Notify.warning('Sorry, there are no images matching your search query. Please try again.'))
-}
+  picturesApiService.resetPage();
+  galleryResult();
+  }
 
 refs.btnLoadMore.classList.add("hidden");
 
