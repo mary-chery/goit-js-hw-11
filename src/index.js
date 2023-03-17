@@ -45,24 +45,25 @@ async function galleryResult() {
         createCalleryCard(hits);
         lightbox.refresh();
 
-      if (picturesApiService.page === Math.ceil(totalHits / 40)) {
+      if (picturesApiService.imageQty >= totalHits) {
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
         refs.btnLoadMore.classList.add("hidden");
+        return;
       }
     } else {
       refs.btnLoadMore.classList.add("hidden");
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-
       return;
     }
   } catch (error) {
     console.log(error.message);
   }
 }
+
 
 function createCalleryCard(array) {
     const markup = array.map(({ webformatURL,largeImageURL,tags,likes,views,comments,downloads }) => {

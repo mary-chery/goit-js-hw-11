@@ -5,7 +5,8 @@ const BASE_URL = 'https://pixabay.com/api/';
 export default class PicturesApiService {
     constructor() {
     this.searchQuery = '';
-    this.page = 1;
+        this.page = 1;
+        this.perPage = 40;
     }
     async fetchPictures() {
         try {
@@ -30,4 +31,7 @@ export default class PicturesApiService {
     set query(newQuery) {
     this.searchQuery = newQuery;
     }
+    get imageQty() {
+    return (this.page - 1) * this.perPage;
+  }
 }
